@@ -8,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,5 +35,12 @@ public class ListMockTest {
         when(mock.get(0)).thenReturn("Example String");
         assertEquals("Example String", mock.get(0));
         assertEquals(null, mock.get(1));
+    }
+
+    @Test
+    public void mockReturnWithGenericParametersTest() {
+        when(mock.get(anyInt())).thenReturn("Example String");
+        assertEquals("Example String", mock.get(0));
+        assertEquals("Example String", mock.get(1));
     }
 }

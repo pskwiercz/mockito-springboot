@@ -2,6 +2,7 @@ package com.pskwiercz.unittest.mockitospringboot.busines;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -59,5 +60,31 @@ public class ListMockTest {
         verify(mockListStrings, atLeastOnce()).get(anyInt());
         verify(mockListStrings, atMost(2)).get(anyInt());
         verify(mockListStrings, never()).get(2);
+    }
+
+    @Test
+    public void argumentCapturingTest() {
+        mockListStrings.add("Example string");
+
+        // Verification
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(mockListStrings).add(captor.capture());
+
+        assertEquals("Example string", captor.getValue());
+    }
+
+    @Test
+    public void multipleArgumentsCapturingTest() {
+        mockListStrings.add("Example string 1");
+        mockListStrings.add("Example string 2");
+
+        // Verification
+        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
+        verify(mockListStrings, times(2)).add(captor.capture());
+
+        List<String> captureValues = captor.getAllValues();
+
+        assertEquals("Example string 1", captureValues.get(0));
+        assertEquals("Example string 2", captureValues.get(1));
     }
 }

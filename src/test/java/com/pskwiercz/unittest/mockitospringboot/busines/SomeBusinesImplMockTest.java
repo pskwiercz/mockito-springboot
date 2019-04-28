@@ -1,22 +1,23 @@
 package com.pskwiercz.unittest.mockitospringboot.busines;
 
 import com.pskwiercz.unittest.mockitospringboot.data.DataService;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class SomeBusinesImplMockTest {
 
-    SomeBusinesImpl someBusines = new SomeBusinesImpl();
-    DataService dataServiceMock = mock(DataService.class);
+    @InjectMocks
+    SomeBusinesImpl someBusines;
 
-    @Before
-    public void setUp() {
-        someBusines.setDataService(dataServiceMock);
-    }
+    @Mock
+    DataService dataServiceMock;
 
     @Test
     public void calculateSumUsingDataServiceTest() {

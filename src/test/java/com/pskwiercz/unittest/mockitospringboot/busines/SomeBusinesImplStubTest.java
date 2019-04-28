@@ -5,28 +5,28 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+class DataServiceStub implements DataService {
+    @Override
+    public int[] retrieveAllData() {
+        return new int[]{1, 2, 3};
+    }
+}
+
+class DataServiceStubEmpty implements DataService {
+    @Override
+    public int[] retrieveAllData() {
+        return new int[]{};
+    }
+}
+
+class DataServiceStubOneValue implements DataService {
+    @Override
+    public int[] retrieveAllData() {
+        return new int[]{5};
+    }
+}
+
 public class SomeBusinesImplStubTest {
-
-    class DataServiceStub implements DataService {
-        @Override
-        public int[] retrieveAllData() {
-            return new int[]{1, 2, 3};
-        }
-    }
-
-    class DataServiceStubEmpty implements DataService {
-        @Override
-        public int[] retrieveAllData() {
-            return new int[]{};
-        }
-    }
-
-    class DataServiceStubOneValue implements DataService {
-        @Override
-        public int[] retrieveAllData() {
-            return new int[]{5};
-        }
-    }
 
     @Test
     public void calculateSumUsingDataServiceTest() {

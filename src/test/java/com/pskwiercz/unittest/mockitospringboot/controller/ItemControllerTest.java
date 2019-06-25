@@ -54,11 +54,10 @@ public class ItemControllerTest {
                 // this also return true .andExpect(content().json("{\"id\": 1,\"name\":\"ball\"}"))
                 .andExpect(content().json("{\"id\": 1,\"name\"    :    \"ball\",\"price\":10,\"quantity\":100}"))
                 .andReturn();
-
     }
 
     @Test
-    public void businessItemControllerTest() throws Exception {
+    public void retrieveBusinessItemControllerTest() throws Exception {
 
         when(businessServiceMock.retrieveHardcodedItem()).thenReturn(new Item(2, "Item2", 10, 10));
         RequestBuilder request = MockMvcRequestBuilders
@@ -71,7 +70,6 @@ public class ItemControllerTest {
                 // this also return true .andExpect(content().json("{\"id\": 1,\"name\":\"ball\"}"))
                 .andExpect(content().json("{id:2, name:Item2, price:10, quantity:10}"))
                 .andReturn();
-
     }
 
     @Test
@@ -93,6 +91,5 @@ public class ItemControllerTest {
                         "{id:3, name:Item3, price:20, quantity:20}" +
                         "]"))
                 .andReturn();
-
     }
 }
